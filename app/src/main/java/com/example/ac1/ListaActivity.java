@@ -110,18 +110,21 @@ public class ListaActivity extends AppCompatActivity{
                 String descricao = cursor.getString(1);
                 String categoria = cursor.getString(2);
                 double valor = cursor.getDouble(3);
-                String formaPagamento = cursor.getString(4);
-                int foiPago = cursor.getInt(5);
+                String data = cursor.getString(4);
+                String formaPagamento = cursor.getString(5);
+                int foiPago = cursor.getInt(6);
 
                 String status = (foiPago == 1) ? "Pago" : "Pendente";
-                String item = descricao + " | " + categoria + " | R$ " + valor + " | " + formaPagamento + " | " + status;
+                String item = descricao + " | " + categoria + " | R$ " + valor
+                        + " | " + data + " | " + formaPagamento + " | " + status;
                 listaDespesa.add(item);
                 listaIds.add(id);
             } while (cursor.moveToNext());
+        }
             cursor.close();
 
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaDespesa);
             listViewDespesas.setAdapter(adapter);
         }
     }
-}
+
